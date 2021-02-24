@@ -15,6 +15,8 @@ import org.jnetpcap.protocol.network.Ip4;
 import org.jnetpcap.protocol.tcpip.Http;
 import org.jnetpcap.protocol.tcpip.Tcp;
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
 public class StartSnffing {
@@ -46,6 +48,7 @@ public class StartSnffing {
         int id = JRegistry.mapDLTToId(pcap.datalink());
 
         while (pcap.nextEx(header, buf) == Pcap.NEXT_EX_OK) {
+        // while(true){
             PcapPacket pack = new PcapPacket(header, buf);
 
             pack.scan(id);
@@ -79,18 +82,27 @@ public class StartSnffing {
                         if(http.contentType().equals("application/x-www-form-urlencoded")) {
                             String data = new String(tcp.getPayload());
                             ArrayList<String> SnffingData = new ArrayList<>();
-                            SnffingData.add("Referer : " + referer);
+                            SnffingData.add("Referer : " + referer + "\n");
                             data = data.split("\n")[data.split("\n").length-1];
                             for(String parameter : data.split("&")) {
                                 System.out.println(parameter);
-                                SnffingData.add(parameter);
+                                SnffingData.add(parameter + "\n");
                             }
 
-                            SnffingData.add("--------------------------------");
+                            SnffingData.add("--------------------------------\n");
 //                            System.out.println(SnffingData);
                             InfoDTO.setSniffingData(SnffingData);
+                            SniffingForm sniffingForm = new SniffingForm();
+                            try {
+                                EventQueue.invokeLater(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        sniffingForm.setSniffingData(SnffingData);
+                                    }
+                                });
+                            } catch (Exception e) {/* e.printStackTrace(); */}
 //                            new SniffingForm();
-                            SnffingData.clear();
+
                         }
 
                         // RecorderService.recordHttpRequest(srcMac, srcIp, dstIp, host, url, referer);

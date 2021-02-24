@@ -1,34 +1,52 @@
 package com.sunrin.gui;
 
 import com.sunrin.packet.InfoDTO;
-import com.sunrin.packet.ListReload;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
-public class SniffingForm extends JFrame {
+public class SniffingForm extends JPanel implements Runnable {
+    private Thread thread;
+
     private JPanel snifferPanel;
-    private JList SniffingDataList;
-    private JButton button1;
+    private JTextArea SniffingDataList;
 
     private DefaultListModel model;
 
+    private String before = "";
+
     public SniffingForm() {
-//        new ListReload(model, SniffingDataList).start();
+        SniffingDataList = new JTextArea();
+        if (thread == null) {
+            thread = new Thread(this);
+            // thread.start();
+        }
+    }
 
-        button1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+    public void setSniffingData(ArrayList<String> getSniffingData) {
+        for (String data : getSniffingData) {
+            SniffingDataList.append(data);
+            // System.out.println(data);
+        }
+    }
+
+    @Override
+    public void run() {
+        while(true){
+            try {
                 if(InfoDTO.getSniffingData() != null) {
-
-                    // SniffingDataList = new JList(model);
+                    for (String data : InfoDTO.getSniffingData()) { before += data; }
+                    for (String data : InfoDTO.getSniffingData()) {
+                        System.out.print(before);
+                        if(!SniffingDataList.getText().split("ㅡ")[SniffingDataList.getText().split("ㅡ").length - 1].equals(before))
+                            SniffingDataList.append(data);
+                        // System.out.println(data);
+                    }
                 }
-                for (String data : InfoDTO.getSniffingData()) {
-                    model.addElement(data);
-                    System.out.println(data);
-                }
+                Thread.sleep(1000);
+            } catch (Exception e) {
+                // e.printStackTrace();
             }
-        });
+        }
     }
 }

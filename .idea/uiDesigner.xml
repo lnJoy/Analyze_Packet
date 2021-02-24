@@ -121,9 +121,6 @@
       </item>
     </group>
     <group name="Packet">
-      <item class="com.sunrin.gui.Analyzes" icon="" removable="true" auto-create-binding="false" can-attach-label="false">
-        <default-constraints vsize-policy="3" hsize-policy="3" anchor="0" fill="0" />
-      </item>
       <item class="com.sunrin.gui.MainForm" icon="" removable="true" auto-create-binding="false" can-attach-label="false">
         <default-constraints vsize-policy="3" hsize-policy="3" anchor="0" fill="0" />
       </item>
