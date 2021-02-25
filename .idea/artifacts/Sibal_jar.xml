@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Sibal:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Sibal_jar</output-path>
+    <root id="archive" name="Analyze_Packet.jar">
+      <element id="module-output" name="Analyze_Packet" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/jnetpcap-1.4.r1425/jnetpcap.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

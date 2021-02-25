@@ -22,6 +22,7 @@ public class StartSnffing extends Thread {
 
     public void threadInterrupt() {
         this.interrupt();
+        return;
     }
 
     public void run() {
@@ -49,17 +50,21 @@ public class StartSnffing extends Thread {
         PcapHeader header = new PcapHeader(JMemory.POINTER);
         JBuffer buf = new JBuffer(JMemory.POINTER);
 
-        int id = JRegistry.mapDLTToId(pcap.datalink());
+        int id = JRegistry.mapDLTToId(pcap.datalink()); // Interface Number
+//        System.out.println(id);
 
-        while (pcap.nextEx(header, buf) == Pcap.NEXT_EX_OK) {
+        while (pcap.nextEx(header, buf) == Pcap.NEXT_EX_OK)
+        {
             // while(true){
             try {
                 PcapPacket pack = new PcapPacket(header, buf);
 
-                pack.scan(id);
+                pack.scan(id); // Interface Number
 
-                if (pack.hasHeader(tcp) && pack.hasHeader(http)) {
-                    System.out.println("[ #" + pack.getFrameNumber() + " ] ##################################### Packet #####################################");
+                System.out.println("[ #" + pack.getFrameNumber() + " ] ##################################### Packet #####################################");
+
+                if (pack.hasHeader(tcp) && pack.hasHeader(http))
+                {
                     pack.getHeader(eth);
                     pack.getHeader(tcp);
                     pack.getHeader(ip4);
@@ -89,6 +94,7 @@ public class StartSnffing extends Thread {
                                 ArrayList<String> SnffingData = new ArrayList<>();
                                 SnffingData.add("Referer : " + referer + "\n");
                                 data = URLDecoder.decode(data.split("\n")[data.split("\n").length - 1]);
+                                System.out.println(data);
                                 for (String parameter : data.split("&")) {
                                     System.out.println(parameter);
                                     SnffingData.add(parameter + "\n");
