@@ -9,6 +9,15 @@ public class InfoDTO {
     static private PcapIf device;
 
     static private ArrayList<String> SniffingData;
+    static private String Referer;
+
+    public static String getReferer() {
+        return Referer;
+    }
+
+    public static void setReferer(String referer) {
+        Referer = referer;
+    }
 
     public static ArrayList<String> getSniffingData() {
         return SniffingData;

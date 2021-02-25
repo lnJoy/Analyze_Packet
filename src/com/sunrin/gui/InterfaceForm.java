@@ -30,6 +30,7 @@ public class InterfaceForm extends JFrame {
                     selected.setText(item);
                     InfoDTO.setDevice(devices.get(interface_list.getSelectedIndex()));
                     System.out.println("Select : " + devices.get(interface_list.getSelectedIndex()).getDescription());
+                    start.setEnabled(true);
                 } catch (Exception er) {
                     // er.printStackTrace();
                 }
@@ -41,11 +42,26 @@ public class InterfaceForm extends JFrame {
             interface_list.addItem(description);
         }
 
+        StartSnffing startSnffing = new StartSnffing();
+
         start.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    new StartSnffing();
+                    startSnffing.start();
+                    start.setEnabled(false);
+                } catch (Exception err) {
+                    // err.printStackTrace();
+                }
+            }
+        });
+
+        stop.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    startSnffing.threadInterrupt();
+                    start.setEnabled(true);
                 } catch (Exception err) {
                     // err.printStackTrace();
                 }

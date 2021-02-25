@@ -9,6 +9,7 @@ public class MainFrame extends JFrame {
         JFrame frame = new JFrame("Analyze Packet");
         frame.setContentPane(new MainForm().getMainPanel());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(480, 320);
         frame.setVisible(true);
         frame.pack();
     }
