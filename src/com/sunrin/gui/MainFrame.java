@@ -10,6 +10,7 @@ public class MainFrame extends JFrame {
         frame.setContentPane(new MainForm().getMainPanel());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(480, 320);
+        frame.setResizable(false);
         frame.setVisible(true);
         frame.pack();
     }

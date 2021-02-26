@@ -13,6 +13,10 @@ public class SniffingForm extends JPanel implements Runnable {
     private String before = "";
 
     public SniffingForm() {
+
+         SniffingDataList.setEditable(false);
+         SniffingDataList.setDragEnabled(true);
+
         if (thread == null) {
             thread = new Thread(this);
             thread.start();
@@ -35,7 +39,7 @@ public class SniffingForm extends JPanel implements Runnable {
                             previousReferer = s.replace("Referer : ", "");
                         }
                     }
-                    System.out.println(previousReferer + ", " + InfoDTO.getReferer());
+                    // System.out.println(previousReferer + ", " + InfoDTO.getReferer());
 
                     if(cnt == 0 || !previousReferer.equals(InfoDTO.getReferer())) {
                         for (String data : InfoDTO.getSniffingData()) {

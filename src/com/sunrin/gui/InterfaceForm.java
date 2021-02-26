@@ -18,6 +18,8 @@ public class InterfaceForm extends JFrame {
     private JLabel label;
     private JLabel selected;
 
+    private StartSnffing startSnffing = new StartSnffing();;
+
     public InterfaceForm() {
 
         ArrayList<PcapIf> devices = InfoDTO.getDevices();
@@ -42,16 +44,15 @@ public class InterfaceForm extends JFrame {
             interface_list.addItem(description);
         }
 
-        StartSnffing startSnffing = new StartSnffing();
-
         start.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
                     startSnffing.start();
                     start.setEnabled(false);
+                    stop.setEnabled(true);
                 } catch (Exception err) {
-                    // err.printStackTrace();
+                    err.printStackTrace();
                 }
             }
         });
@@ -60,10 +61,11 @@ public class InterfaceForm extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    startSnffing.threadInterrupt();
+                    startSnffing.stop();
                     start.setEnabled(true);
+                    stop.setEnabled(false);
                 } catch (Exception err) {
-                    // err.printStackTrace();
+                    err.printStackTrace();
                 }
             }
         });

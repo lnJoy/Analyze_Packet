@@ -5,18 +5,30 @@
     <constraints>
       <xy x="20" y="20" width="500" height="400"/>
     </constraints>
-    <properties/>
+    <properties>
+      <maximumSize width="480" height="120"/>
+      <minimumSize width="480" height="120"/>
+      <preferredSize width="480" height="120"/>
+    </properties>
     <border type="none"/>
     <children>
       <component id="15856" class="javax.swing.JComboBox" binding="interface_list">
         <constraints>
-          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <minimum-size width="240" height="-1"/>
+            <preferred-size width="240" height="-1"/>
+            <maximum-size width="240" height="-1"/>
+          </grid>
         </constraints>
         <properties/>
       </component>
       <component id="52138" class="javax.swing.JButton" binding="start">
         <constraints>
-          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="2" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="2" fill="1" indent="0" use-parent-layout="false">
+            <minimum-size width="240" height="-1"/>
+            <preferred-size width="240" height="-1"/>
+            <maximum-size width="240" height="-1"/>
+          </grid>
         </constraints>
         <properties>
           <enabled value="false"/>
@@ -25,15 +37,22 @@
       </component>
       <component id="51c76" class="javax.swing.JButton" binding="stop">
         <constraints>
-          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="2" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="2" fill="1" indent="0" use-parent-layout="false">
+            <minimum-size width="240" height="-1"/>
+            <preferred-size width="240" height="-1"/>
+            <maximum-size width="240" height="-1"/>
+          </grid>
         </constraints>
         <properties>
+          <enabled value="false"/>
           <text value="중지"/>
         </properties>
       </component>
       <component id="91ef8" class="javax.swing.JLabel" binding="label">
         <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="2" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="2" fill="0" indent="0" use-parent-layout="false">
+            <maximum-size width="240" height="-1"/>
+          </grid>
         </constraints>
         <properties>
           <text value="Interfaces"/>
@@ -41,7 +60,9 @@
       </component>
       <component id="eee82" class="javax.swing.JLabel" binding="selected">
         <constraints>
-          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="2" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="2" fill="0" indent="0" use-parent-layout="false">
+            <maximum-size width="100" height="-1"/>
+          </grid>
         </constraints>
         <properties>
           <text value="Empty"/>
